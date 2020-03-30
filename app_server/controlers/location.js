@@ -87,5 +87,15 @@ module.exports.locationInfo = function(req, res, next) {
 });
 };
 module.exports.addReview = function(req, res, next) {
-  res.render('location-review-form', { title: 'Add review' });
-};
+  res.render('location-review-form', { 
+  	title: 'Review Starcups on Loc8r',
+  	pageHeader: {
+  		title: 'Review Starcups on Loc8r'
+  	},
+  	user: {
+  		displayName:  "Simon Holmes"
+  	}
+  	 });
+  	}
+  	
+
