@@ -39,25 +39,27 @@ block content
             .panel-heading
               h2.panel-title Location map
             .panel-body
-               img.img-fluid.rounded(src='http://maps.googleapis.com/maps/api/staticmap?center=30.5233,50.4500&zoom=17&size=400x350&sensor=false&markers=51.455041,-0.9690884&scale=2')
- 
+               img.img-fluid.rounded(src='https://maps.googleapis.com/maps/api/staticmap?center=${location.coords.lat},=${location.coords.lng}&zoom=17&size=400x350&sensor=false&markers=${location.coords.lat},${location.coords.lng}&scale=2&key=ABQIAAAAvZMU4-DFRYtw1UlTj_zc6hT2yXp_ZAY8_ufC3CFXhHIE1NvwkxQcT1h-VA8wQL5JBdsM5JWeJpukvw' alt='map')
+
       .row
         .col-xs-12
           .panel.panel-primary.review-panel
             .panel-heading
-              a.btn.btn-default.pull-right(href="/location/review/new") Add review
+              a.btn.btn-default.pull-right(href="/location/#{location._id}/review/new") Add review
               h2.panel-title Customer reviews
             .panel-body.review-container
               .row
             each review in location.reviews 
                 .review
+                if review.textReview
                   .well.well-sm.review-header
                     span.rating
                       +outputRating(review.rating)
                     span.reviewAuthor #{review.author}
-                    small.reviewTimestamp #{review.date}
+                    small.reviewTimestamp 
+                      +formatDate(review.createOn)
                   .col-xs-12
-                    p !{(review.text).replace(/\n/g, '<br/>')}
+                    p !{(review.textReview).replace(/\n/g, '<br/>')}
     .col-xs-12.col-md-3
       p.lead
         !{(sideBar.textLide).replace(/\n/g, '<br/>')}

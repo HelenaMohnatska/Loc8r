@@ -5,8 +5,9 @@ var router = express.Router();
 
 /* GET Location */
 router.get('/', ctrlLocation.homeList);
-router.get('/location', ctrlLocation.locationInfo);
-router.get('/location/review/new', ctrlLocation.addReview);
+router.get('/location/:locationid', ctrlLocation.locationInfo);
+router.get('/location/:locationid/review/new', ctrlLocation.addReview);
+router.post('/location/:locationid/review/new', ctrlLocation.doAddReview);
 
 /* Page About */
 router.get('/about', ctrlOther.about);
